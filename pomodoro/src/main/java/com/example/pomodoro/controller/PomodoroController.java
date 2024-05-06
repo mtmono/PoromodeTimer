@@ -27,7 +27,7 @@ public class PomodoroController {
     @GetMapping("/work")
     private String readWork(@ModelAttribute("PomodoroSession") Pomodoro pomodoro, Model model,HttpServletRequest request) {
         String referer = request.getHeader("referer");
-        if (referer != null && (referer.endsWith("/index") || referer.endsWith("/break?"))) {
+        if (referer != null && (referer.endsWith("/index") || referer.endsWith("/break?") || referer.endsWith("/break"))) {
             if(Objects.equals(pomodoro.getStartTime(), null)){
                 pomodoro.setStartTime();
             }
@@ -43,7 +43,7 @@ public class PomodoroController {
     @GetMapping("/break")
     private String readBreak(@ModelAttribute("PomodoroSession") Pomodoro pomodoro, Model model,HttpServletRequest request) {
         String referer = request.getHeader("referer");
-        if (referer != null && (referer.endsWith("/index") || referer.endsWith("/work?"))) {
+        if (referer != null && (referer.endsWith("/index") || referer.endsWith("/work?") || referer.endsWith("/work"))) {
             if(Objects.equals(pomodoro.getStartTime(), null)){
                 pomodoro.setStartTime();
             }

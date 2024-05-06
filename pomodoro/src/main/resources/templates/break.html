@@ -47,19 +47,20 @@
             };
         }
 
-        function setWorkTime(){
-            const date = new Date();
-            // pomodoro.startTime の値を取得
-            const startTime = new Date(document.getElementById('startTime').value);
-            const workTime = Date.getTime() - ;
-            // Tweet ボタンの要素を取得
-            const tweetButton = document.querySelector('twitter-share-button');
-            // Tweet ボタンの href 属性を更新
-            tweetButton.href = 'https://twitter.com/intent/tweet?text=' + workTime + '作業したよ！&url=http://localhost:8080/&hashtags=ポロくんタイマー';
-        }
+//        function setWorkTime(){
+//            const date = new Date();
+//            // pomodoro.startTime の値を取得
+//            const startTime = new Date(document.getElementById('startTime').value);
+//            const workTime = Date.getTime() - ;
+//            // Tweet ボタンの要素を取得
+//            const tweetButton = document.querySelector('twitter-share-button');
+//            // Tweet ボタンの href 属性を更新
+//            tweetButton.href = 'https://twitter.com/intent/tweet?text=' + workTime + '作業したよ！&url=http://localhost:8080/&hashtags=ポロくんタイマー';
+//        }
+
         setInterval(function () {
             const parameters = getParameters();
-            const element = document.getElementById("breaktimer")
+            const element = document.getElementById("timerText")
             const timers = calculateTimerText(parameters);
             //  ここで画面表示
             element.textContent = timers.rMinutes + ":" + timers.rSeconds;
