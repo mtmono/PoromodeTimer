@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>error</title>
+    <link rel="stylesheet" type="text/css" th:href=#{hrefCss}>
+</head>
+<body>
+<!-- エラー内容を表示 -->
+<h1 th:text="${status}"></h1>
+<p th:text="${message}"></p>
+<p th:text="${path}"></p>
+<p th:text="${timestamp}"></p>
+
+<form method="post" th:action="@{/logout}">
+    <button class="btn btn-link" type="submit">ホーム</button>
+</form>
+</body>
+</html>

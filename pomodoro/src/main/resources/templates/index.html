@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{pageTitle}"></title>
+    <link rel="stylesheet" type="text/css" th:href=#{hrefCss}>
+</head>
+<body>
+<div id="state"></div>
+<div id="timer"></div>
+<div id="index">
+    <p class="img">
+        <img id="imgLogo" th:src="@{/image/Pomodoro_logo.png}">
+        <img id="imgPoro" th:src="@{/image/Pomodoro_pomo.png}">
+        <img id="imgFootPrints" th:src="@{/image/Pomodoro_footprints.png}">
+    </p>
+<form th:action="@{/pomodoro/setStartTime}" method="get" id="indexForm" name="fromIndex">
+<input type="hidden" id="workUrl" th:value="@{/work}" />
+<input type="hidden" id="breakUrl" th:value="@{/break}" />
+    <button id="startButton">はじめる</button>
+</form>
+</div>
+<script type="text/javascript" charset="UTF-8">
+    function calculateClassName(parameters) {
+        const date = new Date();
+        const minutes = date.getMinutes();
+        const interval = parameters.work + parameters.break;
+        const minutesInInterval = minutes % interval;
+        return minutesInInterval < parameters.work ? "work" : "break";
+    }
+
+    function getParameters() {
+        const breakString = 5;
+        const workString = 25;
+        return {
+            break: breakString,
+            work: workString
+        };
+    }
+
+    setInterval(function () {
+        const parameters = getParameters();
+        const element = document.getElementById("timer")
+        element.className = calculateClassName(parameters);
+
+        //  現在が作業時間か休憩時間か判定、該当ページに遷移
+        if(calculateClassName(parameters) == "work"){
+            const workUrl = document.getElementById('workUrl').value;
+            document.fromIndex.action = workUrl;
+        }else{
+            const breakUrl = document.getElementById('breakUrl').value;
+            document.fromIndex.action = breakUrl;
+        }
+    }, 1000);
+</script>
+</body>
+</html>

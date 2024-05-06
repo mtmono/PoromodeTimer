@@ -1,0 +1,140 @@
+      body {
+        align-items: center;
+        background-color: #f7eed9;
+        color: #0a0000;
+        display: grid;
+          place-content: center;
+          place-items: center;
+        font-family: "Monaco", "Consolas", monospace;
+        font-size: 10vw;
+        justify-content: center;
+        margin: 0px auto;
+        overflow: hidden;
+        flex-direction: colomun;
+      }
+
+      #break {
+        background-color: #7ec4b7;
+        color: #FFB6C1;
+      }
+
+      #worktimer {
+          display: inline-block;
+          position: relative;
+          text-align: center;
+          margin: 0.5em 0;
+          height: 4em;
+          width: 7em;
+          place-content: center;
+          place-items: center;
+          background-color: #7ec4b7;
+          color: #081932;
+          border-bottom: solid 6px #719bbc;
+          border-radius: 9px;
+          font-size: 0.6em;
+          line-height: 0.2;
+      }
+      #workTimeMessage{
+          font-size: 0.2em;
+      }
+      #breaktimer {
+          display: inline-block;
+          position: relative;
+          text-align: center;
+          margin: 0.5em 0;
+          height: 4em;
+          width: 7em;
+          place-content: center;
+          place-items: center;
+          background-color: #d8bfa5;
+          color: #241f20;
+          border-bottom: solid 6px #a8887c;
+          border-radius: 9px;
+          font-size: 0.6em;
+          line-height: 0.2;
+      }
+      #breakTimeMessage{
+          font-size: 0.2em;
+      }
+      #index{
+          display: inline-block;
+          position: relative;
+          text-align: center;
+          margin: 0.5em 0;
+          height: 4em;
+          width: 7em;
+          background-color: #d8bfa5;
+          font-size: 0.6em;
+          border-radius: 9px;
+          place-content: center;
+          place-items: center;
+      }
+      #index::before {
+          content: "";
+          position: absolute;
+          top: 10px;
+          bottom: -14px;
+          right: -14px;
+          left: 10px;
+          background-color: #7ec4b7;
+          z-index: -1;
+          border-radius: 9px;
+          display: block;
+
+      }
+      .img{
+          width: 0;
+          height: 0;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          margin: auto;
+      }
+      #imgPoro{
+          width: 2em;  /* 350px */
+          position: absolute;
+          top: 0.0em; /* 30px */
+          left: -4em; /* -600px */
+      }
+      #imgFootPrints{
+          width: 0.7em; /* 100px */
+          position: absolute;
+          top: -0.1em;  /* -45px */
+          left: 2.3em;   /* 250px */
+          transform: rotate(-25deg);
+      }
+      #imgLogo{
+          width: 5em;
+          position: absolute;
+          top: -0.5em;
+          right: 0em;
+          bottom: 0;
+          left: -2.5em;
+      }
+      #indexForm{
+          width: 0;
+          height: 0;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          margin: auto;
+      }
+      #startButton {
+          width: 7em;
+          position: absolute;
+          padding: 0.4em 1.5em;
+          font-size: 0.2em;
+          top: 3em;
+          left: -3.5em;
+          border: none;
+          background-color: #a8887c; /* 背景色 */
+          box-shadow: 0 5px 0 #856e66; /* 影の太さ・色 */
+          border-radius: 60px;
+          color: #fff;
+          cursor: pointer;
+          text-decoration: none; /* 文字の下線を消す */
+      }
