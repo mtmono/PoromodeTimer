@@ -6,11 +6,11 @@ import java.time.LocalDateTime;
 
 @Data
 public class Pomodoro {
-    private LocalDateTime startTime;
     private boolean workStatus = false;
+    private long startTime;
     public Pomodoro(){
     }
     public void setStartTime(){
-        startTime = LocalDateTime.now();
+        startTime = System.currentTimeMillis();
     }
 }

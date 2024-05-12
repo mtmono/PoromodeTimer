@@ -1,5 +1,6 @@
 package com.example.pomodoro.controller;
 
+import java.sql.Timestamp;
 import java.util.Objects;
 import jakarta.servlet.http.HttpServletRequest;
 import com.example.pomodoro.model.Pomodoro;
@@ -28,8 +29,10 @@ public class PomodoroController {
     private String readWork(@ModelAttribute("PomodoroSession") Pomodoro pomodoro, Model model,HttpServletRequest request) {
         String referer = request.getHeader("referer");
         if (referer != null && (referer.endsWith("/index") || referer.endsWith("/break?") || referer.endsWith("/break"))) {
-            if(Objects.equals(pomodoro.getStartTime(), null)){
+            if(Objects.equals(pomodoro.getStartTime(), 0L)){
                 pomodoro.setStartTime();
+                Timestamp timestamp = new Timestamp(pomodoro.getStartTime());
+                logger.info("setStartTime :" + timestamp);
             }
             logger.info("GET:work");
             model.addAttribute(pomodoro);
@@ -44,10 +47,14 @@ public class PomodoroController {
     private String readBreak(@ModelAttribute("PomodoroSession") Pomodoro pomodoro, Model model,HttpServletRequest request) {
         String referer = request.getHeader("referer");
         if (referer != null && (referer.endsWith("/index") || referer.endsWith("/work?") || referer.endsWith("/work"))) {
-            if(Objects.equals(pomodoro.getStartTime(), null)){
+            if(Objects.equals(pomodoro.getStartTime(), 0L)){
                 pomodoro.setStartTime();
+                Timestamp timestamp = new Timestamp(pomodoro.getStartTime());
+                logger.info("setStartTime :" + timestamp);
             }
             logger.info("GET:break");
+            pomodoro.setWorkStatus(true);
+            logger.info("setWorkStatus : true");
             model.addAttribute(pomodoro);
             return "break";
         } else {

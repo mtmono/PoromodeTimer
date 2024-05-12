@@ -1,79 +1,27 @@
-<!-- bulma.io v0.9.4 | MIT License | https://github.com/r7kamura/obs-browser-sources.git -->
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="#{pageTitle}"></title>
     <link rel="stylesheet" type="text/css" th:href=#{hrefCss}>
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
 </head>
 <body>
-    <div id="state"></div>
-    <div id="worktimer">
-        <p id="timerText"></p>
-        <p id="workTimeMessage">Let's proceed with the task!</p>
-    </div>
-    <div id="work">
-    <form th:action="@{/break}" th:object="${pomodoro}" method="get">
-        <input type="hidden" id="startTime" value=${pomodoro.startTime}>
-<!--        <button>休憩する</button>-->
-    </form>
-
-    <script type="text/javascript">
-        function zeroPadding(number, length) {
-            return number.toString().padStart(length, "0");
-        }
-
-        function calculateTimerText(parameters) {
-            const date = new Date();
-            const minutes = date.getMinutes();
-            const seconds = date.getSeconds();
-            const remainingSeconds = 59 - seconds;
-            const interval = parameters.work + parameters.break;
-            const minutesInInterval = minutes % interval;
-            const remainingMinutes =
-            (minutesInInterval < parameters.work ? parameters.work : interval) -
-            minutesInInterval -
-            1;
-            return {
-                rMinutes: zeroPadding(remainingMinutes, 2),
-                rSeconds: zeroPadding(remainingSeconds, 2)
-            };
-        }
-
-        function getParameters() {
-            const breakString = 5;
-            const workString = 25;
-            return {
-                break: breakString,
-                work: workString
-            };
-        }
-
-//        function setWorkTime(){
-//            const date = new Date();
-//            // pomodoro.startTime の値を取得
-//            const workTime = Date - document.querySelector('#work input[name="startTime"]').value;
-//            alert("***debug**** workTime:" + workTime);
-//            // Tweet ボタンの要素を取得
-//            const tweetButton = document.querySelector('twitter-share-button');
-//            // Tweet ボタンの href 属性を更新
-//            tweetButton.href = 'https://twitter.com/intent/tweet?text=' + workTime + '作業したよ！&url=http://localhost:8080/&hashtags=ポロくんタイマー';
-//        }
-
-        setInterval(function () {
-            const parameters = getParameters();
-            const element = document.getElementById("timerText")
-            const timers = calculateTimerText(parameters);
-            //  ここで画面表示
-            element.textContent = timers.rMinutes + ":" + timers.rSeconds;
-            //  残り0分0秒で休憩画面に遷移
-            if(timers.rMinutes == 0 && timers.rSeconds == 0){
-                window.location.href = '/break';
-            }
-        }, 1000);
-    </script>
-        <a class="twitter-share-button" data-size="large" href="https://twitter.com/intent/tweet?url=http://localhost:8080/&text=TEXT&hashtags=ポロくんタイマー" target="_blank" rel="noopener noreferrer">Tweet</a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div>
+<div id="state"></div>
+<div id="worktimer">
+    <p id="timerText"></p>
+    <p id="workTimeMessage" th:text="#{workTimeMessage}"></p>
+    <p id="debug"></p>
+</div>
+<div class="tweet" id="tweet">
+    <button id="twitter-share-button"><i class="fa-brands fa-x-twitter"></i>Post</button>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<div id="work">
+    <input type="hidden" id="startTime" th:value=${pomodoro.startTime}>
+    <input type="hidden" id="locationHref" value="/break">
+    <script th:src="@{/js/script.js}"></script>
+</div>
 </body>
 </html>
