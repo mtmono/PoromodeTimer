@@ -12,12 +12,20 @@
         overflow: hidden;
         flex-direction: colomun;
       }
-
-      #break {
-        background-color: #7ec4b7;
-        color: #FFB6C1;
+      @keyframes fadein {
+          0% {opacity: 0}
+          100% {opacity: 1}
       }
-
+      @keyframes fadeout {
+          0% {opacity: 1}
+          100% {opacity: 0}
+      }
+      body{
+          animation: fadein 1s ease-out forwards;
+      }
+      body.fadeout{
+          animation: fadeout 0.5s ease-out forwards;
+      }
       #worktimer {
           display: inline-block;
           position: relative;

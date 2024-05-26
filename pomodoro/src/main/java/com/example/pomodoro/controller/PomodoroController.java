@@ -4,6 +4,10 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import jakarta.servlet.http.HttpServletRequest;
 import com.example.pomodoro.model.Pomodoro;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+//@RestController
 @SessionAttributes(value = "PomodoroSession")
 public class PomodoroController {
 
@@ -22,6 +27,14 @@ public class PomodoroController {
     public Pomodoro createPomodoro() {
         logger.info("createPomodoro");
         return new Pomodoro();
+    }
+    @ResponseBody
+    public ResponseEntity<String> responseEntity() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Accept-Ranges", "none");
+        HttpStatus status = HttpStatus.OK;
+//        return new ResponseEntity<String>("text content", headers, status);
+        return new ResponseEntity<>(headers, status);
     }
 
     //  作業画面に遷移
@@ -74,4 +87,5 @@ public class PomodoroController {
         logger.error("error", e);
         return "error";
     }
+
 }

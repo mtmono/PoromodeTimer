@@ -12,7 +12,9 @@
 <div id="breaktimer">
     <p id="timerText"></p>
     <p id="breakTimeMessage" th:text="#{breakTimeMessage}"></p>
-
+    <audio id="pageMoveSE">
+        <source th:src=#{toWorkSE} type="audio/mp3">
+    </audio>
 </div>
 <div class="tweet" id="tweet">
     <button id="twitter-share-button"><i class="fa-brands fa-x-twitter"></i>Post</button>

@@ -12,7 +12,9 @@
 <div id="worktimer">
     <p id="timerText"></p>
     <p id="workTimeMessage" th:text="#{workTimeMessage}"></p>
-    <p id="debug"></p>
+    <audio id="pageMoveSE">
+        <source th:src=#{toBreakSE} type="audio/mp3">
+    </audio>
 </div>
 <div class="tweet" id="tweet">
     <button id="twitter-share-button"><i class="fa-brands fa-x-twitter"></i>Post</button>
@@ -21,7 +23,7 @@
 <div id="work">
     <input type="hidden" id="startTime" th:value=${pomodoro.startTime}>
     <input type="hidden" id="locationHref" value="/break">
-    <script th:src="@{/js/script.js}"></script>
+    <script th:src="@{/js/script.js}" defer></script>
 </div>
 </body>
 </html>
