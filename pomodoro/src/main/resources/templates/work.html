@@ -6,8 +6,9 @@
     <title th:text="#{pageTitle}"></title>
     <link rel="stylesheet" type="text/css" th:href=#{hrefCss}>
     <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="icon" href="data:,">
 </head>
-<body>
+<body onload="workOnLoad();">
 <div id="state"></div>
 <div id="worktimer">
     <p id="timerText"></p>
@@ -16,14 +17,36 @@
         <source th:src=#{toBreakSE} type="audio/mp3">
     </audio>
 </div>
+<!--    ここからBGMリスト    -->
+<!--<ul id="dropmenu">-->
+<!--    <li><a href="#">メニュー</a>-->
+<!--        <ul>-->
+<!--            <li><a href="#">サブメニュー</a></li>-->
+<!--            <li><a href="#">サブメニュー</a></li>-->
+<!--            <li><a href="#">サブメニュー</a></li>-->
+<!--            <li><a href="#">サブメニュー</a></li>-->
+<!--        </ul>-->
+<!--    </li>-->
+<!--</ul>-->
+<!--    ここまでBGMリスト    -->
 <div class="tweet" id="tweet">
-    <button id="twitter-share-button"><i class="fa-brands fa-x-twitter"></i>Post</button>
+    <button id="twitter-share-button" onclick="twitterOnclick()"><i class="fa-brands fa-x-twitter"></i>Post</button>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 <div id="work">
     <input type="hidden" id="startTime" th:value=${pomodoro.startTime}>
     <input type="hidden" id="locationHref" value="/break">
-    <script th:src="@{/js/script.js}" defer></script>
 </div>
+<div class="range_container">
+    <input type="range" name="range" value="0.5" min="0.0" max="1.0" step="0.1" id="inputRange" class="inputRange"/>
+    <div class="range_active"></div>
+</div>
+<!-- trueでミュート -->
+<div class="mute_button">
+    <input type="hidden" id="mute_buttonFalse" th:value=#{imgMuteButtonFalse}/>
+    <input type="hidden" id="mute_buttonTrue" th:value=#{imgMuteButtonTrue}/>
+    <img id="imgMuteButton" th:src=#{imgMuteButtonFalse} onclick="isMuted()">
+</div>
+<script th:src="@{/js/script.js}" defer></script>
 </body>
 </html>

@@ -1,163 +1,266 @@
-      body {
-        align-items: center;
-        background-color: #f7eed9;
-        color: #0a0000;
-        display: grid;
-          place-content: center;
-          place-items: center;
-        font-family: "Monaco", "Consolas", monospace;
-        font-size: 10vw;
-        justify-content: center;
-        margin: 0px auto;
-        overflow: hidden;
-        flex-direction: colomun;
-      }
-      @keyframes fadein {
-          0% {opacity: 0}
-          100% {opacity: 1}
-      }
-      @keyframes fadeout {
-          0% {opacity: 1}
-          100% {opacity: 0}
-      }
-      body{
-          animation: fadein 1s ease-out forwards;
-      }
-      body.fadeout{
-          animation: fadeout 0.5s ease-out forwards;
-      }
-      #worktimer {
-          display: inline-block;
-          position: relative;
-          text-align: center;
-          margin: 0.5em 0;
-          height: 4em;
-          width: 7em;
-          place-content: center;
-          place-items: center;
-          background-color: #7ec4b7;
-          color: #081932;
-          border-bottom: solid 6px #719bbc;
-          border-radius: 9px;
-          font-size: 0.6em;
-          line-height: 0.2;
-      }
-      #workTimeMessage{
-          font-size: 0.2em;
-      }
-      #breaktimer {
-          display: inline-block;
-          position: relative;
-          text-align: center;
-          margin: 0.5em 0;
-          height: 4em;
-          width: 7em;
-          place-content: center;
-          place-items: center;
-          background-color: #d8bfa5;
-          color: #241f20;
-          border-bottom: solid 6px #a8887c;
-          border-radius: 9px;
-          font-size: 0.6em;
-          line-height: 0.2;
-      }
-      #breakTimeMessage{
-          font-size: 0.2em;
-      }
-      #index{
-          display: inline-block;
-          position: relative;
-          text-align: center;
-          margin: 0.5em 0;
-          height: 4em;
-          width: 7em;
-          background-color: #d8bfa5;
-          font-size: 0.6em;
-          border-radius: 9px;
-          place-content: center;
-          place-items: center;
-      }
-      #index::before {
-          content: "";
-          position: absolute;
-          top: 10px;
-          bottom: -14px;
-          right: -14px;
-          left: 10px;
-          background-color: #7ec4b7;
-          z-index: -1;
-          border-radius: 9px;
-          display: block;
+@charset "UTF-8";
+body {
+    background-color: #f7eed9;
+    color: #0a0000;
+    display: grid;
+    place-content: center;
+    font-family: "Monaco", "Consolas", monospace;
+    font-size: 10vw;
+    margin: 0;
+    overflow: hidden;
+    animation: fadein 1s ease-out forwards;
+}
+body.fadeout {
+    animation: fadeout 0.5s ease-out forwards;
+}
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+#worktimer, #breaktimer, #index {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    margin: 0.5em 0;
+    height: 4em;
+    width: 7em;
+    font-size: 0.6em;
+    border-radius: 9px;
+    place-content: center;
+    place-items: center;
+    vertical-align: top; /* Added for proper alignment */
+}
+#worktimer {
+    background-color: #7ec4b7;
+    color: #081932;
+    border-bottom: solid 6px #719bbc;
+    line-height: 0.2;
+}
+#breaktimer {
+    background-color: #d8bfa5;
+    color: #241f20;
+    border-bottom: solid 6px #a8887c;
+    line-height: 0.2;
+}
+#workTimeMessage, #breakTimeMessage {
+    font-size: 0.2em;
+}
+#index {
+    background-color: #d8bfa5;
+}
+#index::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    bottom: -14px;
+    right: -14px;
+    left: 10px;
+    background-color: #7ec4b7;
+    z-index: -1;
+    border-radius: 9px;
+    display: block;
+}
+.img, #indexForm {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+#imgPoro {
+    width: 2em;
+    position: absolute;
+    top: 0;
+    left: -4em;
+}
 
-      }
-      .img{
-          width: 0;
-          height: 0;
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          margin: auto;
-      }
-      #imgPoro{
-          width: 2em;  /* 350px */
-          position: absolute;
-          top: 0.0em; /* 30px */
-          left: -4em; /* -600px */
-      }
-      #imgFootPrints{
-          width: 0.7em; /* 100px */
-          position: absolute;
-          top: -0.1em;  /* -45px */
-          left: 2.3em;   /* 250px */
-          transform: rotate(-25deg);
-      }
-      #imgLogo{
-          width: 5em;
-          position: absolute;
-          top: -0.5em;
-          right: 0em;
-          bottom: 0;
-          left: -2.5em;
-      }
-      #indexForm{
-          width: 0;
-          height: 0;
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          margin: auto;
-      }
-      #startButton {
-          width: 7em;
-          position: absolute;
-          padding: 0.4em 1.5em;
-          font-size: 0.2em;
-          top: 3em;
-          left: -3.5em;
-          border: none;
-          background-color: #a8887c; /* 背景色 */
-          box-shadow: 0 5px 0 #856e66; /* 影の太さ・色 */
-          border-radius: 60px;
-          color: #fff;
-          cursor: pointer;
-          text-decoration: none; /* 文字の下線を消す */
-      }
+#imgFootPrints {
+    width: 0.7em;
+    position: absolute;
+    top: -0.1em;
+    left: 2.3em;
+    transform: rotate(-25deg);
+}
 
-      div.tweet button {
-      /* font-family: serif; */
-          text-align: end;
-          border: none;
-          font-size: 16px;
-          background-color: #000000;
-          padding: 6px 16px;
-          border-radius: 100vh;
-          color: white;
-          cursor: pointer;
-      }
-      i.fa-twitter {
-          font-size: 26px;
-      }
+#imgLogo {
+    width: 5em;
+    position: absolute;
+    top: -0.5em;
+    left: -2.5em;
+}
+#startButton {
+    width: 7em;
+    position: absolute;
+    padding: 0.4em 1.5em;
+    font-size: 0.2em;
+    top: 3em;
+    left: -3.5em;
+    border: none;
+    background-color: #a8887c;
+    box-shadow: 0 5px 0 #856e66;
+    border-radius: 60px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+div.tweet {
+    position: relative; /* Added for positioning */
+}
+div.tweet button {
+    text-align: end;
+    border: none;
+    font-size: 16px;
+    background-color: #000000;
+    padding: 6px 16px;
+    border-radius: 100vh;
+    color: white;
+    cursor: pointer;
+    position: absolute; /* Added for positioning */
+    top: -2em; /* Adjusted value to move button up */
+    left: 27em;
+    white-space: nowrap;
+}
+i.fa-twitter {
+    font-size: 26px;
+}
+#inputRange {
+    appearance: none;
+    width: 18px;
+    height: 300px;
+    border-radius: 9999px;
+    background: linear-gradient(0deg, #06b6d4 50%, #dddddd 50%);
+    /*    transform:rotate(90deg);*/
+    writing-mode: vertical-rl;
+    direction: rtl;
+    cursor: pointer;
+    position: absolute; /* Added for positioning */
+    top: 18em;
+    left: calc(100% - 43em); /* Adjusted value to position right of timers */
+}
+
+/* ツマミ：Chrome, Safari, Edge用 */
+#inputRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 33px;
+    height: 33px;
+    border-radius: 9999px;
+    background: var(--thumb-bg);
+}
+
+/* ツマミ：Firefox用 */
+#inputRange::-moz-range-thumb {
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 9999px;
+    background: var(--thumb-bg);
+}
+#imgMuteButton {
+/*    img要素なので本来はクリック可能表示にならないが、クリック可能表示にする    */
+    cursor: pointer;
+    width: 0.3em;
+    position: absolute;
+    top: 2.5em;
+    left: 7.3em;
+}
+
+/*  ここからBGMリスト  */
+#dropmenu {
+    list-style: none;
+    width: 1em;
+    height: 0.1em;
+    padding: 0;
+    background: #8a9b0f;
+    border-bottom: 5px solid #535d09;
+    border-radius: 30px;
+    top: -20em;
+    left: -4em;
+}
+
+#dropmenu li {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align : baseline;
+}
+
+#dropmenu li a {
+    display: block;
+    margin: 0;
+    padding: 15px 0 11px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#dropmenu li:hover > a {
+    background: #6e7c0c;
+    color: #eff7b1;
+    border-radius: 3px 3px 0 0;
+}
+
+#dropmenu li ul {
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    border-radius: 0 0 3px 3px;
+}
+
+#dropmenu li:last-child ul {
+    left: -100%;
+    width: 100%;
+}
+
+#dropmenu li ul li {
+    overflow: hidden;
+    width: 200%;
+    height: 0;
+    color: #fff;
+    transition: .2s;
+}
+
+#dropmenu li ul li a {
+    padding: 13px 15px;
+    background: #6e7c0c;
+    text-align: left;
+    font-size: 12px;
+}
+
+#dropmenu li:hover ul li {
+    overflow: visible;
+    height: 38px;
+    border-top: 1px solid #7c8c0e;
+    border-bottom: 1px solid #616d0b;
+}
+
+#dropmenu li:hover ul li:first-child {
+    border-top: 0;
+}
+
+#dropmenu li:hover ul li:last-child {
+    border-bottom: 0;
+}
+
+#dropmenu li:hover ul li:last-child a {
+    border-radius: 0 0 3px 3px;
+}

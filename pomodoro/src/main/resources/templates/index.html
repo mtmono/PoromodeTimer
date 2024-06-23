@@ -4,26 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="#{pageTitle}"></title>
-    <link rel="stylesheet" type="text/css" th:href=#{hrefCss}>
+    <link rel="stylesheet" th:href=#{hrefCss}>
+    <link rel="icon" href="data:,">
 </head>
 <body>
-<div id="state"></div>
-<div id="timer"></div>
 <div id="index">
     <p class="img">
         <img id="imgLogo" th:src=#{imgLogo}>
         <img id="imgPoro" th:src=#{imgPoro}>
         <img id="imgFootPrints" th:src=#{imgFootPrints}>
     </p>
-<!--    ボタン押下時にformのactionへ遷移先が入れられる    -->
-<form  method="get" id="indexForm" name="fromIndex">
-<input type="hidden" id="workUrl" th:value="@{/work}" />
-<input type="hidden" id="breakUrl" th:value="@{/break}" />
-    <audio id="pageMoveSE" th:src=#{indexSE} type="audio/mpeg">
-    </audio>
+    <input type="hidden" id="workUrl" th:value="@{/work}"/>
+    <input type="hidden" id="breakUrl" th:value="@{/break}"/>
+    <audio type="audio/mpeg" id="pageMoveSE" th:src=#{indexSE}></audio>
+    <!--    ページ遷移時にフォームを送信  -->
+    <form method="get" id="indexForm" name="fromIndex">
+        <input type="hidden" id="isMute" th:value="false"/>
+        <input type="hidden" id="audioVolume" th:value="false"/>
         <button id="startButton">はじめる</button>
-</form>
+    </form>
 </div>
-<script th:src="@{/js/index.js}"></script>
+<div class="range_container">
+    <input id="inputRange" type="range" value="0.5" min="0.0" max="1.0" step="0.1"/>
+    <div class="range_active"></div>
+</div>
+<!-- trueでミュート -->
+<div class="mute_button">
+    <input type="hidden" id="mute_buttonFalse" th:value=#{imgMuteButtonFalse}/>
+    <input type="hidden" id="mute_buttonTrue" th:value=#{imgMuteButtonTrue}/>
+    <img id="imgMuteButton" th:src=#{imgMuteButtonFalse} onclick="isMuted()">
+</div>
+<!--<script th:src="@{/js/index.js}" defer></script>-->
+<script th:src="@{/js/script.js}" defer></script>
 </body>
 </html>

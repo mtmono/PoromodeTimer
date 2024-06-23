@@ -4,10 +4,8 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import jakarta.servlet.http.HttpServletRequest;
 import com.example.pomodoro.model.Pomodoro;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -20,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes(value = "PomodoroSession")
 public class PomodoroController {
 
-    private static Logger logger = LoggerFactory.getLogger(PomodoroController.class);
+    private static final Logger logger = LoggerFactory.getLogger(PomodoroController.class);
 
     //  Pomodoroクラスのインスタンス作成
     @ModelAttribute(value = "PomodoroSession")
@@ -33,7 +31,6 @@ public class PomodoroController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept-Ranges", "none");
         HttpStatus status = HttpStatus.OK;
-//        return new ResponseEntity<String>("text content", headers, status);
         return new ResponseEntity<>(headers, status);
     }
 
@@ -41,7 +38,7 @@ public class PomodoroController {
     @GetMapping("/work")
     private String readWork(@ModelAttribute("PomodoroSession") Pomodoro pomodoro, Model model,HttpServletRequest request) {
         String referer = request.getHeader("referer");
-        if (referer != null && (referer.endsWith("/index") || referer.endsWith("/break?") || referer.endsWith("/break"))) {
+        if (referer == null || referer.endsWith("/") || referer.endsWith("/index") || referer.endsWith("/break?") || referer.endsWith("/break")) {
             if(Objects.equals(pomodoro.getStartTime(), 0L)){
                 pomodoro.setStartTime();
                 Timestamp timestamp = new Timestamp(pomodoro.getStartTime());
@@ -59,7 +56,7 @@ public class PomodoroController {
     @GetMapping("/break")
     private String readBreak(@ModelAttribute("PomodoroSession") Pomodoro pomodoro, Model model,HttpServletRequest request) {
         String referer = request.getHeader("referer");
-        if (referer != null && (referer.endsWith("/index") || referer.endsWith("/work?") || referer.endsWith("/work"))) {
+        if (referer == null || referer.endsWith("/") || referer.endsWith("/index") || referer.endsWith("/work?") || referer.endsWith("/work")) {
             if(Objects.equals(pomodoro.getStartTime(), 0L)){
                 pomodoro.setStartTime();
                 Timestamp timestamp = new Timestamp(pomodoro.getStartTime());
