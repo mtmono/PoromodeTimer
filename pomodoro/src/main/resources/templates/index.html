@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="#{pageTitle}"></title>
     <link rel="stylesheet" th:href=#{hrefCss}>
-    <link rel="icon" href="data:,">
+    <link rel="apple-touch-icon" sizes="120x120" th:href=#{imgAppleTouchIcon}>
+    <link rel="icon" type="image/png" sizes="32x32" th:href=#{imgFavicon32}>
+    <link rel="icon" type="image/png" sizes="16x16" th:href=#{imgFavicon16}>
+    <link rel="manifest" th:href=#{manifest}>
+    <link rel="mask-icon" th:href=#{maskIcon} color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
 <div id="index">
